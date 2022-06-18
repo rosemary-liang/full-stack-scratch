@@ -63,6 +63,7 @@ app.get("/api/todos", (req, res, next) => {
   db.query(sql)
     .then((result) => {
       const todos = result.rows;
+      console.log("todos:", todos);
       res.json(todos);
     })
     .catch((err) => next(err));

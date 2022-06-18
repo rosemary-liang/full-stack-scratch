@@ -10,9 +10,9 @@ CREATE TABLE todos(
 );
 
 
-INSERT into todos (description)
+INSERT into todos (description, completed)
 VALUES
-('do the dishes'),
-('sweep the floor'),
-('take a nap')
+('do the dishes', false),
+('sweep the floor', false),
+('take a nap', false)
 ;

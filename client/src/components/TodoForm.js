@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-const TodoForm = () => {
-  const [newTodo, setNewTodo] = useState(null);
+const TodoForm = ({ getTodos }) => {
+  const [newTodo, setNewTodo] = useState("");
 
   const handleInputChange = (e) => {
     setNewTodo(e.target.value);
@@ -11,7 +11,10 @@ const TodoForm = () => {
     //fetch request to submit
     console.log("newTodo:", newTodo);
     e.preventDefault();
-    const finalNewTodo = { description: newTodo };
+    const finalNewTodo = {
+      description: newTodo,
+      completed: false,
+    };
     const req = {
       method: "POST",
       headers: {
@@ -22,8 +25,9 @@ const TodoForm = () => {
 
     fetch("/api/todos", req)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setNewTodo("");
+        getTodos();
         // run fetch request on main todos page
       })
       .catch((err) => console.error(err));

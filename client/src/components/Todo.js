@@ -1,6 +1,10 @@
 import React from "react";
 
 const Todo = ({ todo }) => {
+  // const handleCheckboxClick = (e) => {};
+
+  // const handleRemoveClick = (e) => {};
+
   return (
     <div>
       <input type="checkbox" />
