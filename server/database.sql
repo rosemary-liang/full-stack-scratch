@@ -5,7 +5,8 @@ DROP TABLE IF exists todos;
 
 CREATE TABLE todos(
   todo_id SERIAL PRIMARY KEY NOT NULL,
-  description VARCHAR(250)
+  description VARCHAR(250),
+  completed BOOLEAN NOT NULL
 );
 
 

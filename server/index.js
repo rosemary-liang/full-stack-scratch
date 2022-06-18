@@ -31,7 +31,14 @@ app.post("/api/todos", (req, res, next) => {
   const params = [description];
   db.query(sql, params)
     .then((result) => {
-      res.json(result.rows);
+      const finalResult = {
+        status: "success",
+        results: result.rows.length,
+        data: {
+          todos: results.rows,
+        },
+      };
+      res.json(finalResult);
     })
     .catch((err) => next(err));
 });

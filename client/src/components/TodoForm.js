@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const TodoInput = () => {
+const TodoForm = () => {
   const [newTodo, setNewTodo] = useState(null);
 
   const handleInputChange = (e) => {
@@ -24,6 +24,7 @@ const TodoInput = () => {
       .then((res) => {
         console.log(res);
         setNewTodo("");
+        // run fetch request on main todos page
       })
       .catch((err) => console.error(err));
   };
@@ -41,4 +42,4 @@ const TodoInput = () => {
   );
 };
 
-export default TodoInput;
+export default TodoForm;

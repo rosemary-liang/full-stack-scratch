@@ -1,11 +1,17 @@
 import React from "react";
+import Todo from "./Todo";
 
-const TodoList = () => {
+const TodoList = ({todos}) => {
 
-  //useEffect, when todos change, rerender Todos
-
-  
   return (
-    // map each todo as a li
+    <ul>
+      {
+        todos.map(todo => (
+          <Todo key={todos.todo_id} />
+        ))
+      }
+    </ul>
   )
 }
+
+export default TodoList;
