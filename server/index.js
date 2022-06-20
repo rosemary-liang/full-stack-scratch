@@ -18,21 +18,23 @@ app.use(express.json());
 
 // create a todo
 app.post("/api/todos", (req, res, next) => {
-  const { description } = req.body;
+  const { description, completed } = req.body;
   if (!description)
     throw new ClientError(400, "request must include a description");
+  if (typeof completed !== "boolean")
+    throw new ClientError(400, "request must include completed status");
   const sql = `
   insert into "todos"
-  ("description")
+  ("description", "completed")
   values
-  ($1)
+  ($1, $2)
   returning *
   `;
-  const params = [description];
+  const params = [description, completed];
   db.query(sql, params)
     .then((result) => {
       const finalResult = {
-        todos: results.rows,
+        todos: result.rows,
       };
       res.json(finalResult);
     })
@@ -100,7 +102,19 @@ app.put("/api/todos", (req, res, next) => {
 
 // delete a todo
 app.delete("/api/todos", (req, res, next) => {
-  
+  const { todo_id } = req.body;
+  if (!todo_id) throw new ClientError(400, "invalid todo_id");
+  const params = [todo_id];
+  const sql = `
+  delete from "todos"
+  where "todo_id" = $1
+  `;
+  db.query(sql, params)
+    .then((result) => {
+      const data = result.rows;
+      res.json(data);
+    })
+    .catch((err) => next(err));
 });
 
 app.listen(5000, () => {

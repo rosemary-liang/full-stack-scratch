@@ -25,7 +25,7 @@ function App() {
     getTodos();
   }, []);
 
-  if (todos.length > 1) {
+  if (todos.length >= 0) {
     console.log("todos:", todos);
     return (
       <div className="d-flex flex-column align-items-center w-100 container my-2">
