@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 
-const TodoInput = () => {
-  const [newTodo, setNewTodo] = useState(null);
+const TodoForm = ({ getTodos }) => {
+  const [newTodo, setNewTodo] = useState("");
 
   const handleInputChange = (e) => {
     setNewTodo(e.target.value);
   };
 
   const handleSubmit = (e) => {
-    //fetch request to submit
     console.log("newTodo:", newTodo);
     e.preventDefault();
-    const finalNewTodo = { description: newTodo };
+    const finalNewTodo = {
+      description: newTodo,
+      completed: false,
+    };
     const req = {
       method: "POST",
       headers: {
@@ -22,8 +24,8 @@ const TodoInput = () => {
 
     fetch("/api/todos", req)
       .then((res) => {
-        console.log(res);
         setNewTodo("");
+        getTodos();
       })
       .catch((err) => console.error(err));
   };
@@ -41,4 +43,4 @@ const TodoInput = () => {
   );
 };
 
-export default TodoInput;
+export default TodoForm;
