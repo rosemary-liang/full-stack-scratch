@@ -1,9 +1,3 @@
-// require express, cors, db relative path(after db.js setup)
-// set app to call express
-// middleware
-// routes/endpoints
-// app.listen to check if server is running
-
 const express = require("express");
 const app = express();
 const cors = require("cors");

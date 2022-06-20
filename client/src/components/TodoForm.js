@@ -8,7 +8,6 @@ const TodoForm = ({ getTodos }) => {
   };
 
   const handleSubmit = (e) => {
-    //fetch request to submit
     console.log("newTodo:", newTodo);
     e.preventDefault();
     const finalNewTodo = {
