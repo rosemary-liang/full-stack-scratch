@@ -16,7 +16,6 @@ function App() {
         return result.json();
       })
       .then((data) => {
-        console.log("todos#2", data);
         setTodos(data);
       })
       .catch((err) => console.error(err));
@@ -27,12 +26,12 @@ function App() {
   }, []);
 
   if (todos.length > 1) {
-    console.log('todos:',todos);
+    console.log("todos:", todos);
     return (
-      <>
+      <div className="d-flex flex-column align-items-center w-100 container my-2">
         <TodoForm getTodos={getTodos} />
         <TodoList todos={todos} getTodos={getTodos} />
-      </>
+      </div>
     );
   }
 }

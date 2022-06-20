@@ -2,12 +2,15 @@ import React from "react";
 import Todo from "./Todo";
 
 const TodoList = ({ todos, getTodos }) => {
-  // console.log("TodoList todos", todos);
-
   return (
-    <ul>
+    <ul className="p-0 my-2">
       {todos.map((todo) => (
-        <Todo key={todos.todo_id} todo={todo} />
+        <Todo
+          key={todo.todo_id}
+          todo_id={todo.todo_id}
+          todo={todo}
+          getTodos={getTodos}
+        />
       ))}
     </ul>
   );

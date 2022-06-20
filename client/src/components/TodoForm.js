@@ -25,10 +25,8 @@ const TodoForm = ({ getTodos }) => {
 
     fetch("/api/todos", req)
       .then((res) => {
-        // console.log(res);
         setNewTodo("");
         getTodos();
-        // run fetch request on main todos page
       })
       .catch((err) => console.error(err));
   };
